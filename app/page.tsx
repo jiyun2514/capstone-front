@@ -13,12 +13,23 @@ export default function Home() {
         </h1>
 
         <p className="mb-12 max-w-2xl text-center text-lg leading-8 text-[#5C5A57]">
-          얼굴 분위기와 인상을 분석해
-          나와 닮은 유기견을 추천받고,
-          보호소 정보까지 확인해보세요.
+          AI 인터뷰와 얼굴 분위기 분석을 기반으로
+          사용자와 잘 어울리는 유기견을 추천하고,
+          입양 상담까지 연결해드립니다.
         </p>
 
-        <div className="mb-14 grid w-full max-w-4xl grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mb-14 grid w-full max-w-4xl grid-cols-1 gap-5 md:grid-cols-4">
+
+          <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+            <div className="mb-4 text-4xl">💬</div>
+            <h3 className="mb-2 text-lg font-bold text-[#2D2A26]">
+              인터뷰
+            </h3>
+            <p className="text-sm leading-6 text-gray-500">
+              AI와 대화를 통해 사용자 성향을 분석해요
+            </p>
+          </div>
+
           <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
             <div className="mb-4 text-4xl">📸</div>
             <h3 className="mb-2 text-lg font-bold text-[#2D2A26]">
@@ -55,7 +66,7 @@ export default function Home() {
           className="rounded-full bg-[#2D2A26] px-10 py-4 text-lg font-bold text-white transition hover:scale-105 hover:bg-black"
         >
           매칭 시작하기
-        </Link>
+        </Link>  
       </section>
     </main>
   );

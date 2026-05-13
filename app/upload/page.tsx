@@ -46,7 +46,7 @@ export default function UploadPage() {
               />
             ) : (
               <>
-                <p className="mb-3 text-5xl">🐶</p>
+                <p className="mb-3 text-5xl">📷</p>
 
                 <p className="font-semibold text-[#5C5A57]">
                   이미지를 업로드해주세요

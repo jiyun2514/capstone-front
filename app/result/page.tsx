@@ -45,7 +45,7 @@ export default function ResultPage() {
           </p>
 
           <h1 className="mb-3 text-4xl font-black text-[#2D2A26]">
-            운명의 유기견을 찾았어요 🐶
+            당신과 잘 어울리는 아이를 찾았어요 🐾
           </h1>
 
           <p className="text-[#6B655D]">
@@ -165,6 +165,22 @@ export default function ResultPage() {
           </article>
 
           <section className="space-y-6">
+            <article className="rounded-[2rem] border border-[#F1E8DA] bg-[#FFF7EA] p-7 shadow-sm">
+              <p className="mb-3 text-sm font-bold text-[#C17B00]">
+                DESTINY STORY
+              </p>
+
+              <h3 className="mb-4 text-2xl font-black text-[#2D2A26]">
+                초코가 당신을 기다리고 있어요 🐾
+              </h3>
+
+              <p className="leading-8 text-[#5C5A57]">
+                차분한 일상을 좋아하는 당신에게 초코는 편안한 친구가 되어줄 수 있어요.
+                사람을 잘 따르고 안정적인 성향이 있어 처음 반려를 시작하는 경우에도
+                잘 어울릴 가능성이 높습니다.
+              </p>
+            </article>
+
             <article className="rounded-[2rem] border border-[#F1E8DA] bg-white p-7 shadow-sm">
               <h3 className="mb-5 text-2xl font-black text-[#2D2A26]">
                 매칭 분석 결과
