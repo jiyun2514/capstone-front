@@ -13,26 +13,31 @@ const bestMatch = {
   visualScore: 86,
   personalityScore: 91,
   totalScore: 89,
-  shelter: "서초구 유기견 보호소",
   reason:
     "초코는 차분하고 사람을 잘 따르는 성향을 가진 아이예요. 사진 분석 결과 둥근 눈매와 부드러운 인상이 비슷하게 나타났고, 인터뷰 응답 기준으로도 실내 생활과 가벼운 산책을 선호하는 점이 잘 맞아요.",
   tags: ["차분함", "사람을 좋아함", "실내 생활 적합", "산책 좋아함"],
+  userKeywords: [
+    "차분한 인상",
+    "실내 생활 선호",
+    "안정형 성향",
+    "부드러운 분위기",
+  ],
+  shelterInfo: {
+    name: "서초구 유기동물 보호센터",
+    phone: "02-1234-5678",
+    address: "서울특별시 서초구 양재동",
+    hours: "09:00 - 18:00",
+  },
 };
 
 export default function ResultPage() {
   const [userImage, setUserImage] = useState<string | null>(null);
-  const [interviewAnswers, setInterviewAnswers] = useState<string[]>([]);
 
   useEffect(() => {
     const savedImage = localStorage.getItem("userImage");
-    const savedAnswers = localStorage.getItem("interviewAnswers");
 
     if (savedImage) {
       setUserImage(savedImage);
-    }
-
-    if (savedAnswers) {
-      setInterviewAnswers(JSON.parse(savedAnswers));
     }
   }, []);
 
@@ -79,31 +84,25 @@ export default function ResultPage() {
               </h2>
 
               <p className="mt-3 leading-7 text-[#6B655D]">
-                업로드된 사용자 이미지를 기반으로 얼굴 분위기와 인상을
-                분석했어요.
+                업로드된 사용자 이미지와 인터뷰 응답을 기반으로 사용자
+                분위기와 생활 성향을 분석했어요.
               </p>
 
               <div className="mt-7">
                 <h3 className="mb-3 text-lg font-black text-[#2D2A26]">
-                  인터뷰 기반 사용자 성향
+                  AI 분석 키워드
                 </h3>
 
-                {interviewAnswers.length > 0 ? (
-                  <div className="space-y-2">
-                    {interviewAnswers.map((answer, index) => (
-                      <div
-                        key={index}
-                        className="rounded-2xl bg-[#FFFCF7] px-4 py-3 text-sm leading-6 text-[#5C5A57]"
-                      >
-                        Q{index + 1}. {answer}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-[#6B655D]">
-                    아직 저장된 인터뷰 답변이 없어요.
-                  </p>
-                )}
+                <div className="flex flex-wrap gap-2">
+                  {bestMatch.userKeywords.map((keyword) => (
+                    <span
+                      key={keyword}
+                      className="rounded-full bg-[#FFF3DD] px-3 py-2 text-xs font-bold text-[#A56700]"
+                    >
+                      #{keyword}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </article>
@@ -141,10 +140,6 @@ export default function ResultPage() {
                 </div>
               </div>
 
-              <p className="text-sm text-gray-500">
-                보호소: {bestMatch.shelter}
-              </p>
-
               <div className="mt-7">
                 <h3 className="mb-3 text-lg font-black text-[#2D2A26]">
                   초코의 키워드
@@ -161,6 +156,19 @@ export default function ResultPage() {
                   ))}
                 </div>
               </div>
+
+              <div className="mt-8 rounded-[2rem] border border-[#F1E8DA] bg-[#FFFCF7] p-5">
+                <p className="mb-4 text-xl font-black text-[#2D2A26]">
+                  보호소 정보
+                </p>
+
+                <div className="space-y-3 text-sm leading-6 text-[#5C5A57]">
+                  <p>📍 {bestMatch.shelterInfo.name}</p>
+                  <p>☎ {bestMatch.shelterInfo.phone}</p>
+                  <p>🏠 {bestMatch.shelterInfo.address}</p>
+                  <p>🕒 {bestMatch.shelterInfo.hours}</p>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -175,9 +183,9 @@ export default function ResultPage() {
               </h3>
 
               <p className="leading-8 text-[#5C5A57]">
-                차분한 일상을 좋아하는 당신에게 초코는 편안한 친구가 되어줄 수 있어요.
-                사람을 잘 따르고 안정적인 성향이 있어 처음 반려를 시작하는 경우에도
-                잘 어울릴 가능성이 높습니다.
+                차분한 일상을 좋아하는 당신에게 초코는 편안한 친구가
+                되어줄 수 있어요. 사람을 잘 따르고 안정적인 성향이 있어
+                처음 반려를 시작하는 경우에도 잘 어울릴 가능성이 높습니다.
               </p>
             </article>
 
