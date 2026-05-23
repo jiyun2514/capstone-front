@@ -56,23 +56,64 @@ export default function InterviewPage() {
   const currentOptions = interviewFlow[step]?.options || [];
 
   const handleSend = (text: string) => {
-    if (!text.trim()) return;
+    const trimmedText = text.trim();
+
+    // 공백 입력 방지
+    if (!trimmedText) return;
+
+    // 최소 3글자 미만 검사
+    if (trimmedText.length < 3) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "ai",
+          text: "질문에 대한 답변을 조금 더 자세하게 입력해주세요 😊",
+        },
+      ]);
+
+      return;
+    }
+
+    // 특수문자만 입력한 경우
+    const specialOnly = /^[^a-zA-Z0-9가-힣]+$/;
+
+    // 알파벳만 입력한 경우
+    const englishOnly = /^[a-zA-Z]+$/;
+
+    // 숫자만 입력한 경우
+    const numberOnly = /^[0-9]+$/;
+
+    if (
+      specialOnly.test(trimmedText) ||
+      englishOnly.test(trimmedText) ||
+      numberOnly.test(trimmedText)
+    ) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "ai",
+          text: "질문에 대한 답변을 입력해주세요 😊",
+        },
+      ]);
+
+      return;
+    }
 
     const updatedMessages: Message[] = [
       ...messages,
       {
         role: "user",
-        text,
+        text: trimmedText,
       },
     ];
 
     const savedAnswers = JSON.parse(
       localStorage.getItem("interviewAnswers") || "[]"
     );
-    
+
     localStorage.setItem(
       "interviewAnswers",
-      JSON.stringify([...savedAnswers, text])
+      JSON.stringify([...savedAnswers, trimmedText])
     );
 
     setMessages(updatedMessages);
