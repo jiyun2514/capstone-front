@@ -10,8 +10,8 @@ type Message = {
 
 const interviewFlow = [
   {
-    ai: "안녕하세요! 저는 입양 매칭을 도와주는 AI 인터뷰어예요. 평소 집에 있는 시간이 많은 편인가요, 아니면 외출이 잦은 편인가요?",
-    options: ["집에 있는 시간이 많아요", "외출이 잦은 편이에요"],
+    ai: "안녕하세요! 저는 입양 매칭을 도와주는 AI 인터뷰어예요. 이전에 반려견을 키워본 경험이 있나요?",
+    options: ["네, 키워봤어요", "현재도 키우고 있어요", "아니요, 처음이에요"],
   },
   {
     ai: "좋아요. 원하는 반려견 성격은 어떤 편인가요?",
@@ -25,6 +25,14 @@ const interviewFlow = [
     ai: "입양 시 가장 중요하게 생각하는 요소는 무엇인가요?",
     options: ["성격과 생활 패턴", "외모와 첫인상", "건강 상태"],
   },
+  {
+    ai : "현재 거주 환경은 어떤 편인가요?",
+    options: ["아파트에 살고 있어요", "빌라/주택에 살고 있어요", "마당이 있는 집에 살고 있어요"],
+  },
+  {
+    ai : "반려견이 혼자 있어야 하는 시간은 하루 평균 얼마나 되나요?",
+    options: ["1~3시간", "4~6시간", "7시간 이상"],
+  }
 ];
 
 export default function InterviewPage() {
@@ -42,16 +50,17 @@ export default function InterviewPage() {
   const [isFinished, setIsFinished] = useState(false);
 
   const chatEndRef = useRef<HTMLDivElement | null>(null);
+  
 
-  useEffect(() => {
-    localStorage.removeItem("interviewAnswers");
-  }, []);
+  //useEffect(() => {
+  //  localStorage.removeItem("interviewAnswers");
+  //}, []);
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [messages]);
+  //useEffect(() => {
+  //  chatEndRef.current?.scrollIntoView({
+  //    behavior: "smooth",
+  //  });
+  //}, [messages]);//
 
   const currentOptions = interviewFlow[step]?.options || [];
 
